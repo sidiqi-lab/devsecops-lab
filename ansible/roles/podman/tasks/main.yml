@@ -1,0 +1,19 @@
+---
+- name: Install Podman
+  become: true
+  ansible.builtin.apt:
+    name: podman
+    state: present
+    update_cache: true
+
+- name: Verify Podman installation
+  become: true
+  ansible.builtin.command:
+    cmd: podman --version
+  register: podman_version
+  changed_when: false
+
+- name: Display Podman version
+  ansible.builtin.debug:
+    msg: "{{ podman_version.stdout }}"
+

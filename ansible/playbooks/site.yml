@@ -1,0 +1,8 @@
+---
+- name: Configure Ubuntu application server
+  hosts: app
+  become: true
+
+  roles:
+    - podman
+
