@@ -41,3 +41,16 @@ jobs:
       - name: Build container image
         run: podman build -t devsecops-lab:${{ github.sha }} .
 
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          image: devsecops-lab:${{ github.sha }}
+          format: spdx-json
+          output-file: sbom.spdx.json
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-${{ github.sha }}
+          path: sbom.spdx.json
+
