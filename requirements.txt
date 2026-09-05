@@ -3,4 +3,4 @@ uvicorn
 pytest
 httpx
 bandit 
-Pip-audit
+pip-audit
